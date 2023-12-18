@@ -1,0 +1,83 @@
+﻿@page
+@using BonosCarrosWeb.Models;
+@model BonosCarrosWeb.Pages.EditModel
+@{
+}
+
+
+<div class="row pt-5">
+	<div class="col-md-4">
+		<form method="post">
+			<h4>Alteração de Carro</h4>
+			<hr />
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<input type="hidden" asp-for="Carro.CarroId"/>
+
+			<div class="form-group">
+				<label asp-for="Carro.Modelo" class="control-label"></label>
+				<input asp-for="Carro.Modelo" class="form-control" />
+				<span asp-validation-for="Carro.Modelo" class="text-danger"></span>
+			</div>
+			<div class="form-group mt-3 mb-3">
+				<input class="form-check-input" asp-for="Carro.Disponibilidade" />
+				<label asp-for="Carro.Disponibilidade"></label>
+			</div>
+			<div class="form-group">
+				<label asp-for="Carro.Descricao" class="control-label"></label>
+				<input asp-for="Carro.Descricao" class="form-control" />
+				<span asp-validation-for="Carro.Descricao" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Carro.ImgUri" class="control-label"></label>
+				<input asp-for="Carro.ImgUri" class="form-control" />
+				<span asp-validation-for="Carro.ImgUri" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Carro.Cep" class="control-label"></label>
+				<input asp-for="Carro.Cep" class="form-control" />
+				<span asp-validation-for="Carro.Cep" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Carro.Preco" class="control-label"></label>
+				<input asp-for="Carro.Preco" class="form-control" />
+				<span asp-validation-for="Carro.Preco" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Carro.DataLancamento" class="control-label"></label>
+				<input asp-for="Carro.DataLancamento" class="form-control" />
+				<span asp-validation-for="Carro.DataLancamento" class="text-danger"></span>
+				<span asp-validation-for="Carro.DataLancamento" class="text-danger"></span>
+			</div>
+			<div class="form-group mt-3 mb-3">
+				<label asp-for="Carro.MarcaId" class="control-label"></label>
+				<select class="form-select" asp-for="Carro.MarcaId"
+						asp-items="Model.MarcaOptionItems">
+					<option value="">Opção vazia</option>
+				</select>
+				<span asp-validation-for="Carro.MarcaId" class="text-danger">
+				</span>
+			</div>
+			<div class="form-group mt-3 mb-3">
+				<label asp-for="Carro.ListaDesigners" class="control-label"></label>
+
+				<select class="form-select"
+						asp-for="DesignerIds"
+						asp-items="Model.DesignerOptionItems">
+				</select>
+
+				<span asp-validation-for="Carro.ListaDesigners" class="text-danger"></span>
+			</div>
+			<div class="form-group mt-4">
+				<input type="submit" value="Salvar" class="btn btn-primary" />
+				<input type="submit" value="Excluir" class="btn btn-danger" asp-page-handler="Delete"/>
+			</div>
+		</form>
+	</div>
+</div>
+
+@section Scripts
+	{
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+	}
+}

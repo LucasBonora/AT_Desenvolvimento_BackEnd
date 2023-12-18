@@ -1,0 +1,40 @@
+﻿@page "/carro/{id}/{modelo}"
+@using BonosCarrosWeb.Models;
+@model BonosCarrosWeb.Pages.DetailsModel
+@{
+}
+
+
+<h2 class="my-3">@Model.Carro.Modelo</h2>
+<div class="row">
+	<div class="col-4">
+		<img class="img-fluid rounded" src="@Model.Carro.ImgUri">
+	</div>
+	<div class="col-6">
+		<h4 class="my-3">Sobre:</h4>
+		<p>@Model.Carro.Descricao</p>
+		<h4 class="my-3">Mais Info:</h4>
+		<ul>
+		<li><label asp-for="Carro.Disponibilidade"></label> @Model.Carro.DisponibilidadeFormatada</li>
+			<li><label asp-for="Carro.Preco"></label>: @Html.DisplayFor(Model => Model.Carro.Preco)</li>
+			<li><label asp-for="Carro.Cep"></label>: @Html.DisplayFor(Model => Model.Carro.Cep)</li>
+			<li><label asp-for="Carro.DataLancamento"></label>: @Html.DisplayFor(Model => Model.Carro.DataLancamento)</li>
+			@if (Model.Marca is not null)
+			{
+			<li><label asp-for="Carro.MarcaId"></label>: @Html.DisplayFor(Model => Model.Marca.Nome)</li>
+			}
+			@if (Model.Carro.ListaDesigners.Count > 0)
+			{
+				<li>
+					<label asp-for="Carro.ListaDesigners"></label>:
+					@string.Join(", ", Model.Carro.ListaDesigners.Select(item => item.Nome))
+				</li>
+			}
+		</ul>
+		@if (User.Identity.IsAuthenticated)
+		{
+			<a class="btn my-3 btn-primary" asp-page="Edit" asp-route-id="@Model.Carro.CarroId">Editar</a>
+		}
+		<a class="btn my-3 btn-primary" asp-page="CepResponse" asp-route-id="@Model.Carro.CarroId">Detalhes Cep</a>
+	</div>
+</div>

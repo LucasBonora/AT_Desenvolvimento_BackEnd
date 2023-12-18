@@ -1,0 +1,28 @@
+﻿@page
+@using BonosCarrosWeb.Models;
+@model BonosCarrosWeb.Pages.CepResponseModel
+@{
+	CepResponse cepResponse = (CepResponse)ViewData["CepResponse"];
+}
+
+<div class="text-center">
+	<h1> Encontre inforções do seu CEP</h1>
+	<h2>@Model.carro.Cep</h2>
+	<table>
+		<tr>
+			<th>Logradouro</th>
+			<th>Complemento</th>
+			<th>Bairro</th>
+			<th>Localidade</th>
+			<th>Uf</th>
+		</tr>
+		<tr>
+			<td>@cepResponse.Logradouro</td>
+			<td>@cepResponse.Complemento</td>
+			<td>@cepResponse.Bairro</td>
+			<td>@cepResponse.Localidade</td>
+			<td>@cepResponse.Uf</td>
+		</tr>
+
+	</table>
+</div>
